@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <!-- Make sure that our transformation is going to be processed just before packaging -->
+        <GenerateNuspecDependsOn>_TransformProjectPackToAnalyzerPack</GenerateNuspecDependsOn>
+        <!-- Add ps1 files as extensions allowed for a diagnostic analyzer -->
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>.ps1;$(AllowedOutputExtensionsInPackageBuildOutputFolder)</AllowedOutputExtensionsInPackageBuildOutputFolder>
+        <AllowedOutputExtensionsInSymbolsPackageBuildOutputFolder>.ps1;$(AllowedOutputExtensionsInPackageBuildOutputFolder)</AllowedOutputExtensionsInSymbolsPackageBuildOutputFolder>
+    </PropertyGroup>
+
+    <Target Name="_TransformProjectPackToAnalyzerPack">
+        <ItemGroup>
+            <!-- Modify the variable `_BuildOutputInPackage` to transform the TargetPath (NuGet file destination) to match diagnostic analyzer requirements -->
+            <_BuildOutputInPackage>
+                <TargetPath>\analyzers\dotnet\cs\%(_BuildOutputInPackage.TargetPath)</TargetPath>
+            </_BuildOutputInPackage>
+            <!-- Add `install.ps1` and `uninstall.ps1` to the package -->
+            <_TempToolsNuGetFiles Include="$(MSBuildThisFileDirectory)..\resources\*.ps1" />
+            <_TempToolsNuGetFilesWithMeta Include="%(_TempToolsNuGetFiles.Identity)">
+                <FinalOutputPath>%(Fullpath)</FinalOutputPath>
+                <IsKeyOutput>true</IsKeyOutput>
+                <OriginalItemSpec>%(Fullpath)</OriginalItemSpec>
+                <TargetFramework>$(TargetFramework)</TargetFramework>
+                <TargetPath>\tools\%(Filename)%(Extension)</TargetPath>
+            </_TempToolsNuGetFilesWithMeta>
+            <_BuildOutputInPackage Include="@(_TempToolsNuGetFilesWithMeta)">
+            </_BuildOutputInPackage>
+        </ItemGroup>
+
+        <!-- Display a message when repackaging was successful -->
+        <Message Priority="high" Text="AnalyzerPack successfully prepared your package as a Diagnostic Analyzer ">
+    </Target>    
+</Project>

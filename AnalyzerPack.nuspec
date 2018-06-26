@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata minClientVersion="2.12">
+    <id>AnalyzerPack</id>
+    <version>1.0.0</version>
+    <title>Roslyn Analyzer Packaging</title>
+    <authors>Alexandre Mutel</authors>
+    <summary>Pack the current project as a Roslyn Analyzer</summary>
+    <description>Pack the current project as a Roslyn Analyzer.</description>
+    <language>en-US</language>
+    <projectUrl>https://github.com/xoofx/AnalyzerPack</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/xoofx/AnalyzerPack/master/license.txt</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>analyzers, roslyn</tags>
+  </metadata>
+  <files>
+    <file src="build\AnalyzerPack.targets" target="build\" />
+    <file src="resources\*.ps1" target="resources\" />
+  </files>
+</package>
