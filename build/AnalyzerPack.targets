@@ -28,6 +28,6 @@
         </ItemGroup>
 
         <!-- Display a message when repackaging was successful -->
-        <Message Importance="high" Text="AnalyzerPack successfully prepared your package as a Diagnostic Analyzer "/>
+        <Message Importance="high" Text="AnalyzerPack successfully prepared your package as a Roslyn Diagnostic Analyzer"/>
     </Target>    
 </Project>
