@@ -21,7 +21,9 @@ It will also add automatically the `tools\install.ps1`, `tools\uninstall.ps1` fi
 Simply reference AnalyzerPack into your project:
 
 ```xml
-<PackageReference Include="AnalyzerPack" Version="1.*" PrivateAssets="all" />
+<ItemGroup>
+  <PackageReference Include="AnalyzerPack" Version="1.*" PrivateAssets="all" />
+</ItemGroup>
 ```
 
 And when performing a `dotnet pack` on your project (or from Visual Studio), it will automatically generate the proper folder structure for the NuGet diagnostic analyzer.
