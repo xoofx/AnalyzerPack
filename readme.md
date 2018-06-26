@@ -12,6 +12,10 @@ With AnalyzerPack, you can keep your project as it is, but when performing a `do
 Your resulting diagnostic assembly DLL will be moved to the folder `analyzers/dotnet/cs` inside the NuGet package.
 It will also add automatically the `tools\install.ps1`, `tools\uninstall.ps1` files.
 
+| Standard Package | With AnalyzerPack
+|------------------|------------------
+| ![Standard](images/package-normal.png) | ![With AnalyzerPack](images/package-as-analyzer.png)
+
 ## Usage
 
 Simply reference AnalyzerPack into your project:
